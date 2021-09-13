@@ -1,6 +1,6 @@
 action: GLOB, msg: packaging
 cwd: C:\Linear_model_sep1321
-cmd: 'c:\users\ragu\anaconda3\envs\linear_model_sep1321\python.exe' setup.py sdist --formats=zip --dist-dir 'C:\Linear_model_sep1321\.tox\dist'
+cmd: 'c:\users\ragu\anaconda3\envs\linear_model_sep1321\python.exe' setup.py sdist --formats=zip --dist-dir '.tox\dist'
 running sdist
 running egg_info
 writing src.egg-info\PKG-INFO
@@ -32,8 +32,7 @@ copying test\__init__.py -> src-0.0.1\test
 copying test\conftest.py -> src-0.0.1\test
 copying test\test_config.py -> src-0.0.1\test
 Writing src-0.0.1\setup.cfg
-creating C:\Linear_model_sep1321\.tox\dist
-creating 'C:\Linear_model_sep1321\.tox\dist\src-0.0.1.zip' and adding 'src-0.0.1' to it
+creating '.tox\dist\src-0.0.1.zip' and adding 'src-0.0.1' to it
 adding 'src-0.0.1'
 adding 'src-0.0.1\src'
 adding 'src-0.0.1\src.egg-info'
