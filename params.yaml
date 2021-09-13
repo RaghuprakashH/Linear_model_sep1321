@@ -1,0 +1,49 @@
+base:
+  project: Air-test
+  random_state: 345
+  target_col: Air_temperature_[K]
+  drop_col1:  UDI
+  drop_col2:  Product_ID
+  drop_col3:  Type
+  drop_col4:  Machine_failure
+  drop_col5:  Air_temperature_[K]
+
+data_source:
+  s3_source: data_given/ai4i2020.csv
+
+load_data:
+  raw_dataset_csv: data/raw/ai4i2020.csv
+
+split_data:
+  train_path: data/processed/train_ai4i2020.csv
+  test_path: data/processed/test_ai4i2020.csv
+  test_size: 0.2
+
+estimators:
+
+  ElasticNet:
+    params1:
+      # alpha: 0.88
+      # l1_ratio: 0.89
+      alpha: None
+      #l1_ratio: 0.4
+      cv: 10
+estimators2:
+  RidgeCV:
+    params2:
+      alphaA: 0.1
+      alphaB: 1.0
+      alphaC: 9.0
+      cvR: 10
+estimators3:
+  LassoCV:
+    params3:
+      cv: 10
+      maxiter: 20000
+
+model_dir: saved_models
+report:
+  params: report\params.json
+  scores: report\scores.json
+
+webapp_model_dir: prediction_service/model/model.joblib
