@@ -3,6 +3,8 @@ import yaml
 import pandas as pd
 import argparse
 
+#get data
+
 def read_params(config_path):
     project_root = os.path.dirname(os.path.dirname(__file__))
     with open(os.path.join(project_root, config_path)) as yaml_file:

@@ -1,0 +1,18 @@
+schema: '2.0'
+stages:
+  load_data:
+    cmd: python src/load_data.py --config=params.yaml
+    deps:
+    - path: data_given/ai4i2020.csv
+      md5: 399512e3f0c18aa56d036f7d78fe96b1
+      size: 522048
+    - path: src/get_data.py
+      md5: ead692c4bc99f54bb4378854946b4ab0
+      size: 798
+    - path: src/load_data.py
+      md5: 198de4f93ba7f5d6930a1b6021fb849a
+      size: 683
+    outs:
+    - path: data/raw/ai4i2020.csv
+      md5: 0208394211f81038e73fb9437fbb19ed
+      size: 523915
