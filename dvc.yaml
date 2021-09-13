@@ -16,3 +16,25 @@ stages:
       - data/processed/train_ai4i2020.csv
       - data/processed/test_ai4i2020.csv
 
+  train_and_evaluate:
+    cmd: python src/train_and_evaluate.py --config=params.yaml
+    deps:
+    - data/processed/train_ai4i2020.csv
+    - data/processed/test_ai4i2020.csv
+    - src/train_and_evaluate.py
+    params:
+    - estimators.ElasticNet.params1.alpha
+    - estimators.ElasticNet.params1.cv
+    - estimators2.RidgeCV.params2.alphaA
+    - estimators2.RidgeCV.params2.alphaB
+    - estimators2.RidgeCV.params2.alphaC
+    - estimators2.RidgeCV.params2.cvR
+    - estimators3.LassoCV.params3.cv
+    - estimators3.LassoCV.params3.maxiter
+    metrics:
+    - report/scores.json:
+        cache: false
+    - report/params.json:
+        cache: false
+    outs:
+    - saved_models/model.joblib

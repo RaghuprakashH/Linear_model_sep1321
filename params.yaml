@@ -42,7 +42,7 @@ estimators3:
       maxiter: 20000
 
 model_dir: saved_models
-report:
+reports:
   params: report\params.json
   scores: report\scores.json
 
