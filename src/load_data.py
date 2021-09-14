@@ -8,8 +8,9 @@ def load_and_save(config_path):
     df = get_data(config_path)
     new_cols = [col.replace(" ", "_") for col in df.columns]
     raw_data_path = config["load_data"]["raw_dataset_csv"]
-    project_root = os.path.dirname(os.path.dirname(__file__))
-    df.to_csv(os.path.join(project_root,raw_data_path), sep=",", index=False, header=new_cols)
+    #project_root = os.path.dirname(os.path.dirname(__file__))
+    #df.to_csv(os.path.join(project_root,raw_data_path), sep=",", index=False, header=new_cols)
+    df.to_csv(raw_data_path, sep=",", index=False, header=new_cols)
 
 
 if __name__=="__main__":

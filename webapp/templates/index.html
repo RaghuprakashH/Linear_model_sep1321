@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}
+AirTemp
+{% endblock title %}
+
+
+{% block custom_css %}
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock custom_css %}
+
+
+{% block body %}
+<!-- nav bar -->
+
+<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color: #e3f2fd;">
+    <a class="navbar-brand" href="/">AirTempPrediction</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/RaghuprakashH/Linear_model_sep1321">source code</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div>
+    <!-- nav bar ends -->
+
+    <div class="container-fluid masthead">
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <form method="POST">
+                        <!-- Input block-->
+                        <div class="form-group">
+                            <label for="translation">
+                                <blockquote class="blockquote">
+                                    <p class="mb-2">Enter the details as indicated:</p>
+                                </blockquote>
+                            </label>
+                            <textarea class="form-control" name="Process_temperature_[K]" rows="1"
+                                placeholder="Process_temperature_[K] expected range 305.700000 to 313.800000"></textarea>
+                            <textarea class="form-control" name="Rotational_speed_[rpm]" rows="1"
+                                placeholder="Rotational_speed_[rpm] expected range 1168.000000 to 2886.000000"></textarea>
+                            <textarea class="form-control" name="Torque_[Nm]" rows="1"
+                                placeholder="Torque_[Nm] expected range 3.800000 to 76.600000"></textarea>
+                            <textarea class="form-control" name="Tool_wear_[min]" rows="1"
+                                placeholder="Tool_wear_[min] expected range 0.000000 to 253.000000"></textarea>
+                            <textarea class="form-control" name="TWF" rows="1"
+                                placeholder="TWF expected range 0.000000 to 1.000000"></textarea>
+                            <textarea class="form-control" name="HDF" rows="1"
+                                placeholder="HDF expected range 0.000000 to 1.000000"></textarea>
+                            <textarea class="form-control" name="PWF" rows="1"
+                                placeholder="PWF expected range 0.000000 to 1.000000"></textarea>
+                            <textarea class="form-control" name="OSF" rows="1"
+                                placeholder="OSF expected range 0.000000 to 1.000000"></textarea>
+                            <textarea class="form-control" name="RNF" rows="1"
+                                placeholder="RNF expected range 0.000000 to 1.000000"></textarea>
+
+
+                        </div>
+
+                        <!-- Select output language here. -->
+                        <div class="form-group">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Predict</button></br>
+                        </br>
+                    </form>
+                    <!-- Translated text returned by the Translate API is rendered here. -->
+                </div>
+                <div class="col">
+                    <form>
+                        <div class="form-group">
+                            <label for="translation-result">
+
+                                <blockquote class="blockquote">
+                                    <p class="mb-2">Prediction:</p>
+                                </blockquote>
+
+                            </label>
+                            <textarea readonly class="form-control" id="exTextarea" rows="5">{{ response }}</textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {% endblock body %}
+
+        {% block custom_js %}
+        <!-- Custom JS -->
+        <script src="{{ url_for('static', filename='script/index.js') }}"></script>
+        {% endblock custom_js %}

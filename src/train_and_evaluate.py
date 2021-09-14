@@ -41,9 +41,11 @@ def train_and_evaluate(config_path):
     drop_col2 = config["base"]["drop_col2"]
     drop_col3 = config["base"]["drop_col3"]
     drop_col4 = config["base"]["drop_col4"]
-    drop_col = [drop_col1,drop_col2,drop_col3,drop_col4]
-    project_root = os.path.dirname(os.path.dirname(__file__))
-    train = pd.read_csv(os.path.join(project_root,train_data_path), sep=",")
+    drop_col5 = config["base"]["drop_col5"]
+    drop_col = [drop_col1,drop_col2,drop_col3,drop_col4,drop_col5]
+    #project_root = os.path.dirname(os.path.dirname(__file__))
+    #train = pd.read_csv(os.path.join(project_root,train_data_path), sep=",")
+    train = pd.read_csv(train_data_path, sep=",")
     print(train.columns)
     Y_train = train[target]
     #for i in drop_col:
@@ -51,16 +53,18 @@ def train_and_evaluate(config_path):
 
 
     X_train_H = train.drop(columns=drop_col,axis=1)
+    print(X_train_H.columns)
     from sklearn.preprocessing import StandardScaler
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train_H)
 
-    #print(X_train.head(5))
+    ##print(X_train.head(5))
 
-    test = pd.read_csv(os.path.join(project_root,test_data_path), sep=",")
+    #test = pd.read_csv(os.path.join(project_root,test_data_path), sep=",")
+    test = pd.read_csv(test_data_path, sep=",")
     Y_test = test[target]
     X_test_H = test.drop(columns=drop_col,axis=1)
-
+    print(X_test_H.columns)
     X_test = scaler.transform(X_test_H)
 
     from sklearn.linear_model import LinearRegression
@@ -106,7 +110,9 @@ def train_and_evaluate(config_path):
         model_selection = elastic_lr
 
     predicted_qualities = model_selection.predict(X_test)
+    print(predicted_qualities)
     (rmse, mae, r2) = eval_metrics(Y_test, predicted_qualities)
+
 
         #####################################################
 
@@ -141,7 +147,6 @@ def train_and_evaluate(config_path):
     os.makedirs(model_dir, exist_ok=True)
 
     model_path = os.path.join(model_dir,"model.joblib")
-
     joblib.dump(model_selection, model_path)
 
 if __name__=="__main__":

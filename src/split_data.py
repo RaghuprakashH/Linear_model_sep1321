@@ -15,16 +15,20 @@ def split_and_saved_data(config_path):
     split_ratio = config["split_data"]["test_size"]
     random_state = config["base"]["random_state"]
 
-    project_root = os.path.dirname(os.path.dirname(__file__))
+    #project_root = os.path.dirname(os.path.dirname(__file__))
 
-    df = pd.read_csv(os.path.join(project_root,raw_data_path), sep=",")
+    #df = pd.read_csv(os.path.join(project_root,raw_data_path), sep=",")
+    df = pd.read_csv(raw_data_path, sep=",")
     train, test = train_test_split(
         df,
         test_size=split_ratio,
         random_state=random_state
         )
-    train.to_csv(os.path.join(project_root,train_data_path), sep=",", index=False, encoding="utf-8")
-    test.to_csv(os.path.join(project_root,test_data_path), sep=",", index=False, encoding="utf-8")
+    #train.to_csv(os.path.join(project_root,train_data_path), sep=",", index=False, encoding="utf-8")
+    #test.to_csv(os.path.join(project_root,test_data_path), sep=",", index=False, encoding="utf-8")
+
+    train.to_csv(train_data_path, sep=",", index=False, encoding="utf-8")
+    test.to_csv(test_data_path, sep=",", index=False, encoding="utf-8")
 
 if __name__=="__main__":
     args = argparse.ArgumentParser()
