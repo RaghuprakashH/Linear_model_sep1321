@@ -9,6 +9,7 @@ from get_data import read_params
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import json
 import joblib
+import pickle
 
 def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
@@ -54,9 +55,14 @@ def train_and_evaluate(config_path):
 
     X_train_H = train.drop(columns=drop_col,axis=1)
     print(X_train_H.columns)
+
+    pickle.dump(X_train_H, open('train_data.pkl', 'wb'))
+    pickle.load(open('train_data.pkl', 'rb'))
+
     from sklearn.preprocessing import StandardScaler
     scaler = StandardScaler()
     X_train = scaler.fit_transform(X_train_H)
+
 
     ##print(X_train.head(5))
 
@@ -148,6 +154,9 @@ def train_and_evaluate(config_path):
 
     model_path = os.path.join(model_dir,"model.joblib")
     joblib.dump(model_selection, model_path)
+
+
+
 
 if __name__=="__main__":
     args = argparse.ArgumentParser()
