@@ -7,6 +7,7 @@ import  pandas as pd
 from  cassandra.query import SimpleStatement,BatchStatement
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
+from prediction_service import model
 
 params_path = "params.yaml"
 webapp_root = "webapp"
